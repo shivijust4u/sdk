@@ -99,7 +99,23 @@ Install the library and command line tool:
 >> api = mygeotab.API(username='user@example.com', password='password', database='database')
 >> api.authenticate()
 
->> api.get('Device', resultsLimit=1)
+  #Get Device
+>> api.get('Device', resultsLimit=5)
+
+  #Get User with id = b1
+>> api.get('User', search={'id':'b1'})
+
+  #Add Odometer Adjustment to device with id = b1
+>> api.add('StatusData', entity={
+   "data": 7000,
+   "dateTime": "2020-01-17T15:49:14.977Z",
+   "device": {
+    "id": "b1"
+   },
+   "diagnostic": {
+    "id": "DiagnosticOdometerAdjustmentId"
+   }
+  })
 ```
 
 ## PHP

@@ -38,6 +38,16 @@ The HTTP response is returned as JSON. For example:
 
 Where the version will be the current version on the server.
 
+Get Call examples:
+
+`https://myXX.geotab.com/apiv1/Get?typeName=Device&search={"id":"b130D"}&credentials={"database":"DATABASENAME","sessionId":"SESSIONID","userName":"USERNAME"} `
+
+`https://myXX.geotab.com/apiv1/Get?typeName=DutyStatusViolation&credentials={"database":"DATABASENAME","userName":"USERNAME","password":"PASSWORD,"}&search={"fromDate":"2018-11-23T00:00:00.000Z","toDate":"2019-11-24T00:00:00.000Z","userSearch":{"Id":"b3C"}}`
+
+MultiCall example:
+
+`https://myXX.geotab.com/apiv1/ExecuteMultiCall?calls=[{"method":"Get","params":{"typeName":"Device","search":{"id":"b130D"}}},{"method":"Get","params":{"typeName":"Device","search":{"id":"b1313"}}}]&credentials={"database":"DATABASENAME","sessionId":"SESSIONID","userName":"USERNAME"}`
+
 ### Make your first API call
 Here is a more complex example that requires parameters. While both GET and POST requests are supported, it is strongly recommended that only POST requests are used for calls which require MyGeotab credentials as parameters. This example shows a POST request that returns all devices (vehicles) and their properties.
 
@@ -89,6 +99,9 @@ var data = {
  "method" : "Get",
  "params" : {
   "typeName" : "Device",
+  "search": {
+   "name" : "myfirstcar%"
+  },
   "credentials" : {
    "database" : "demo",
    "userName" : "bob@geotab.com",
@@ -643,19 +656,19 @@ var controllers = (List<Controller>)results[2];
 
 ### MultiCall FAQ
 
-*Can I use a search in a multicall?*
+###### Can I use a search in a multicall?
 
 Yes, it is possible to use a search in a multicall.
 
-*When shouldn't I use a multicall?*
+###### When shouldn't I use a multicall?
 
 1. If you need to make a few requests that are long running and return a large amount of data.In these casesit may be preferable to make these requests singularly instead of running one request that continues for a very long time before completion. When the connection is held open for a long period of time you become increasingly susceptible to network interference that could terminate the request.
 2. Manipulating data (Add,Set,Remove) is not recommended via a multicall. A muilticall is not transactional. Therefore, if call 1 of 3 to Add succeeds and call 2 of 3 fails, call 3 of 3 is not executed and call 1 is not rolled back. See "What if an error occurs in one of the MultiCall requests?" below for illustration.
 
-*How many request can I put in a multicall?*
+###### How many request can I put in a multicall?
 
 There is no limit on the number of requests that can be made in a multicall. When making a large number of requests it may be desirable to "chunk" the requests into several requests of a smaller and more manageable size.
 
-*What if the call doesn't return a result?*
+###### What if the call doesn't return a result?
 
 The index in the array of results will have a **null** value.
