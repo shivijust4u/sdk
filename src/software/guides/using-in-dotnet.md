@@ -12,6 +12,8 @@ The [nuget package](https://www.nuget.org/packages/Geotab.Checkmate.ObjectModel/
 
 > Quick start in [API Clients](../../api/clients)
 
+> Hint: Remember to periodically check for updates to the nuget package. Ideally, your integration should use the same nuget package version as the checkmate version of your database.
+
 ## API class
 
 ### Step 1: Initialization & authentication
@@ -60,6 +62,8 @@ await api.CallAsync<object>("Remove", typeof(Device), new {
 The last parameter to this Call method is an [anonymous object](http://msdn.microsoft.com/en-us/library/bb397696.aspx) which contains the parameters for the method (please review the [API reference](../../api/reference/#M:Geotab.Checkmate.Database.DataStore.Remove1) to see which parameters the method expects, and whether the parameters are required or optional). The parameter order is not significant, and it is acceptable to omit optional parameters. Optional parameters will revert to their default values, typically "null" or “false” values.
 
 The API class automatically handles databases that are moved to different servers in the federation and expired tokens (token are typically valid for 2 weeks) by automatically re-authenticating and continuing.
+
+> Hint: Checkout the .Net nuget package multi-call [example](../concepts/#api-client-support)
 
 ### Example code
 

@@ -83,6 +83,8 @@ params | The parameter object that the API method expects. For example: `{ typeN
 callbackSuccess | The function that will be called back when the API call succeeds. The callback function has a single argument called “result” that will contain any results returned by the API call.
 callbackError | The function that will be called back should the API call fail. The callback function has a single argument that will contain error information.
 
+> Hint: Checkout the JavaScript API multi-call [example](../concepts/#api-client-support)
+
 ## A note about state
 
 The GeotabApi object is designed to be stateless. The main reason for this is that a call could fail at any point due to session expiry or the database moving. The authenticationCallback will automatically be called when this situation is detected. The application will then prompt (or read from file etc.) for the required credentials. The call that was being attempted will resume when new credentials are received. This also means that there is no concept of being "logged in" or “out” of the server.

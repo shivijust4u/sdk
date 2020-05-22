@@ -42,7 +42,7 @@ Get Call examples:
 
 `https://myXX.geotab.com/apiv1/Get?typeName=Device&search={"id":"b130D"}&credentials={"database":"DATABASENAME","sessionId":"SESSIONID","userName":"USERNAME"} `
 
-`https://myXX.geotab.com/apiv1/Get?typeName=DutyStatusViolation&credentials={"database":"DATABASENAME","userName":"USERNAME","password":"PASSWORD,"}&search={"fromDate":"2018-11-23T00:00:00.000Z","toDate":"2019-11-24T00:00:00.000Z","userSearch":{"Id":"b3C"}}`
+`https://myXX.geotab.com/apiv1/Get?typeName=DutyStatusViolation&credentials={"database":"DATABASENAME","userName":"USERNAME","password":"PASSWORD"}&search={"fromDate":"2018-11-23T00:00:00.000Z","toDate":"2019-11-24T00:00:00.000Z","userSearch":{"Id":"b3C"}}`
 
 MultiCall example:
 

@@ -29,6 +29,33 @@ The data feed was designed to be an efficient means of getting a continuous feed
 
 While "from date" is supported, "to date" is not. The feed is not designed to return data within discrete dates. If you wish to obtain data in a particular date range, then use the standard Get methods associated with the entity search objects. If a version is specified, then the argument "from date" is ignored.
 
+##### Search with Data Feed
+<!-- >**Using Search with Data Feed**   -->
+Use caution when using other search criteria (such as DiagnosticSearch) with data feed because the data feed is primarily used for streaming data (such as fetching all Status Data).  
+
+In the following example, the GetFeed will first pull 20 StatusData records (starting from the fromDate) and then apply the filter - where Diagnostic Id is "DiagnosticAccelerationForwardBrakingId". It is possible that the first 20 StatusData records may not have any data with that diagnostic id and hence, you might get an empty array/unexpected results when actually there might be more data available (after the first 20 records) that matches the DiagnosticSearch criteria.
+
+```javascript
+api.call("GetFeed", {
+    "typeName": "StatusData",
+    "search": {
+        "fromDate": "2019-12-01T05:00:00.000Z",
+        "diagnosticSearch": { 
+            "id": "DiagnosticAccelerationForwardBrakingId" 
+        }
+        ,
+        "deviceSearch": { 
+            "id": "b1"
+        }
+    },
+    "resultsLimit": 20
+}, function(result) {
+    console.log("Done: ", result);
+}, function(e) {
+    console.error("Failed:", e);
+});
+```
+  
 ## Caching to Improve Performance
 
 It may be required to populate nested entities of data retrieved via the feed. Entities that are static or semi-static will respond well to caching.

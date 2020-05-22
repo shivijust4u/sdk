@@ -91,6 +91,7 @@ Image 1 — Modified left-hand-side menu
 The Add-In navigation entry can be placed after any of the following built-in values:
 
 - `GettingStartedLink`
+- `dashboardAnalytics`
 - `ActivityLink`
 - `EngineMaintenanceLink`
 - `ZoneAndMessagesLink`
@@ -349,8 +350,19 @@ Use the commented area to define and then assign variables in the scope of the A
    //         alert("Action performed");
    //     });
    // }
+
+   // Get user session info example:
+   // var getUserSessionInfo = function (api){
+   //     return new Promise(function (resolve, reject) {
+   //         api.getSession(function(session){sessionInfo = session;});
+   //         console.log("Session Info: ", sessionInfo);
+   //         resolve();
+   //     });
+   // }
+
    return {
     initialize(api, state, callback) {
+    //  getUserSessionInfo(api);
      callback();
     },
     focus(api, state) {
@@ -440,6 +452,7 @@ The state object is a powerful tool for creating navigational components by chan
 | `gotoPage` | Redirects the user to another page with optional parameters. `Example:state.gotoPage("map", { someParameter1: true, someParameter2: 5 });` | String, [Object] | Void |
 | `hasAccessToPage` | Checks whether the current user has the security clearance to view a page by its `#` (hash) value. Example: `var result =    state.hasAccessToPage("map");` | String | Boolean |
 | `getGroupFilter` | Gets an array with ids of the selected groups in the organization filter. Example: `var result = state.getGroupFilter();` | None | Array |
+| `translate` | Returns a translated string of the entered parameter. Example: `var result = state.translate("map");` | String | String |
 
 > The second parameter to the gotoPage method is optional and is used for query string parameters.
 
